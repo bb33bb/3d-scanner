@@ -1,0 +1,19 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+
+\title{Algorithmus für einen 3D-Scanner}
+
+\begin{document}
+\section{Aufgabesntellung}
+Ziel ist es mit hilfe einer Kamera und einem in eine Ebene gestreuten Laserstrahl ein Objekt das schrittweise gedreht wird abzutasten um aus den Daten ein 3D-Modell zu erstellen. Der hier vorgestellte Algorithmus geht in 3 Schritten vor. Zuerst werden die Punkte in den 2D Eingangsdaten gefunden die deutlich heller sind als die umgebenden Punkte der selben Zeile. Im zweiten Schritt werden die Punkte auf Polarkoordinaten mit Ursprung im Kameraobjektiv umgerechnet. Im dritten Schritt werden schließlich aus dem Winkel in dem das Objekt gerade steht, der Polarkoordinatendarstellung der Eingansdaten und dem bekannten Winkel zwischen Laserstrahl und Kamera die 3D Koordinaten der Punkte berechnet.
+\section{Algortihmus Teil 1}
+Zur Unterdrückung von Rauschen und um sicherzugehen dass das Gefundene Maximum in der Mitte von ev. breiteren Linien Liegt wird das Bild zuerst mit einem Gaussschen Weichzeichungsfilter bearbeitet. Dieser kann entweder auf die Zeilen einzeln angewandt werden oder 2 dimensional auf das ganze Bild. Letzteres hat in Versuchen den Effekt ergeben, dass die Daten glatter waren. Danach wird von jeder Zeile der Index des Maximums berrechnet und die Koordinaten dieser Punkte in ein Array gespeichert.
+\section{Algorithmus Teil 2}
+Als Nächstes werden die Punkte In Polarkoordinaten mit Ursprung im Kameraobjektiv umgerechnet, dazu muss natürlich einges über die Geometrie der Kamera bekannt sein, ein Algorithmus zur Kallibrierung der Kamera folgt.
+\section{Algorithmus Teil 3}
+Nun hat man Alle Daten zur Verfügung um die 3 dimensionalen Koordinaten der Punkte zu berrechnen. Zuerst berrechnet man den Abstand zur Drehachse in x und y Richtung. Dazu ist ein LGS zu lösen, siehe dazu Quellcode und Skizze. Dann wird die z Koordinate berrechnet und schließlich der Effekt der Drehung berücksichtigt, die genau in der z Achse stattfindet, was die Rechnung stark vereinfacht. 
+
+\end{document}
