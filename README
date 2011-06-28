@@ -1,0 +1,8 @@
+A simple 3d scanner software, it takes images taken from different 
+kown angles of an object, with a line projected on them to create a 3d 
+image 
+from them. 
+
+software implemented in matlab, i uses arduino for the hardware to turn 
+the object and trigger the camera, there's a shell script for doing, 
+this automatically. 
